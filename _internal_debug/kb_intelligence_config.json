@@ -1,0 +1,321 @@
+{
+  "propensity_dimensions": [
+    {
+      "key": "gamification",
+      "label": "Gamification Engagement",
+      "description": "Reward accumulation and habit streak \u2014 log-normalized to reduce zero-inflation skew",
+      "column_weights": {
+        "log_streak": 0.45,
+        "log_coins": 0.35,
+        "norm_sessions": 0.2
+      }
+    },
+    {
+      "key": "ai_tutor",
+      "label": "AI Tutor Usage",
+      "description": "Active AI-guided practice: smoothed tutor usage signal + exercise depth",
+      "column_weights": {
+        "ai_smoothed": 0.55,
+        "norm_ex": 0.45
+      }
+    },
+    {
+      "key": "leaderboard",
+      "label": "Leaderboard & Competition",
+      "description": "Competitive engagement: smoothed leaderboard signal using norm_days (not sessions, no leakage)",
+      "column_weights": {
+        "leaderboard_smoothed": 0.6,
+        "norm_days": 0.4
+      }
+    },
+    {
+      "key": "social",
+      "label": "Social & Intrinsic Motivation",
+      "description": "Intrinsic drive and notification responsiveness",
+      "column_weights": {
+        "motivation_score": 0.6,
+        "notif_open_rate_30d": 0.4
+      }
+    }
+  ],
+  "journey_templates": {
+    "trial": {
+      "D0": {
+        "default": "Welcome to SpeakX! Start your journey to speaking confidence today. Your first lesson awaits!",
+        "gamification": "Welcome! Earn your first streak & coins today. Let's build a habit!",
+        "ai_tutor": "Welcome! Ready to speak? Try your 1-on-1 AI Tutor session now for instant feedback.",
+        "leaderboard": "Welcome! See how you rank. Start your first lesson & climb the leaderboard!",
+        "social": "Welcome! Join our community of learners. Start your first lesson & connect!"
+      },
+      "D1": {
+        "default": "Great start! Keep practicing to build confidence. Your next personalized lesson is ready.",
+        "gamification": "Day 2 streak! Keep it up! More coins await with your next exercise.",
+        "ai_tutor": "Practice makes perfect! Your AI Tutor is ready for another real-time conversation.",
+        "leaderboard": "Check the leaderboard! A new challenge awaits. Complete a lesson to earn points.",
+        "social": "Connect & compete! See how your friends are doing. Practice a lesson today!"
+      },
+      "D2": {
+        "default": "Consistency is key! A quick practice session today will boost your fluency.",
+        "gamification": "Don't break your streak! Practice today to keep your habit strong & earn rewards.",
+        "ai_tutor": "Unlock new phrases! Your AI Tutor has fresh topics for your speaking practice.",
+        "leaderboard": "Climb higher! Your next lesson could put you ahead on the leaderboard. Go!",
+        "social": "Inspire others! Share your progress & see who's leading. Practice now!"
+      },
+      "D3": {
+        "default": "Feeling more confident? Keep going! Your personalized curriculum adapts to you.",
+        "gamification": "3-day streak! Amazing! Keep earning coins & building your speaking habit.",
+        "ai_tutor": "Refine your pronunciation! Get instant voice analytics from your AI Tutor session.",
+        "leaderboard": "New week, new ranks! Challenge yourself to reach the top. Practice today!",
+        "social": "See who's speaking! Check the leaderboard & join the conversation. Practice!"
+      },
+      "D4": {
+        "default": "Almost a week! Regular practice is transforming your speaking skills. Keep it up!",
+        "gamification": "Your streak is growing! Don't miss out on daily rewards. Practice now!",
+        "ai_tutor": "Dive deeper! Your AI Tutor is ready for advanced conversation topics.",
+        "leaderboard": "The top spots are calling! Complete more lessons to boost your rank.",
+        "social": "Connect with fellow learners! See their progress & share your own. Practice!"
+      },
+      "D5": {
+        "default": "Notice your progress? Voice analytics can show you how far you've come!",
+        "gamification": "Keep that streak alive! More practice means more coins & better speaking.",
+        "ai_tutor": "Ready for a challenge? Your AI Tutor has new scenarios to test your fluency.",
+        "leaderboard": "Push your limits! A few more lessons could secure your spot on the board.",
+        "social": "Who's leading the pack? Check the leaderboard & get inspired to practice!"
+      },
+      "D6": {
+        "default": "One more day to a full week! Your dedication is paying off. Practice today!",
+        "gamification": "Almost a 7-day streak! Don't lose it now. Practice to earn your weekly bonus!",
+        "ai_tutor": "Your AI Tutor is always ready. Get real-time feedback to perfect your speech.",
+        "leaderboard": "Weekend challenge! Can you reach the top 10? Practice & earn points!",
+        "social": "Weekend practice! See who's online & join the learning fun. Speak up!"
+      },
+      "D7": {
+        "default": "Congratulations on a week of practice! Ready to unlock premium features?",
+        "gamification": "7-day streak achieved! Claim your bonus coins & keep the habit going!",
+        "ai_tutor": "Mastered the basics? Unlock premium AI Tutor features for advanced practice.",
+        "leaderboard": "Weekly leaderboard reset! Start strong this week. Practice to dominate!",
+        "social": "Celebrate your week! See who else hit a 7-day streak. Keep practicing!"
+      }
+    },
+    "paid": {
+      "D8": {
+        "default": "Welcome to premium! Unlock advanced lessons & unlimited AI Tutor sessions.",
+        "at_risk": "We miss you! Re-engage with premium features. Your progress awaits.",
+        "gamification": "Premium perks! Your streak bonus is bigger now. Keep practicing daily!",
+        "ai_tutor": "Unlimited AI Tutor sessions are yours! Dive into deeper conversations.",
+        "leaderboard": "Premium power! Your scores now count more. Climb the global leaderboard!",
+        "social": "Connect with premium users! Share tips & compete for top spots. Practice!"
+      },
+      "D10": {
+        "default": "Keep up the great work! Your personalized curriculum is adapting to your growth.",
+        "gamification": "Your streak is a testament to your dedication! Keep it going for more rewards.",
+        "ai_tutor": "Explore new topics with your AI Tutor. Perfect your fluency with unlimited practice.",
+        "leaderboard": "Challenge yourself! Aim for a higher rank this week. Practice & earn points.",
+        "social": "See how others are progressing! Share your wins & get inspired. Practice!"
+      },
+      "D15": {
+        "default": "Halfway through the month! How's your speaking confidence growing?",
+        "gamification": "Mid-month streak check! Keep your habit strong & your coins growing.",
+        "ai_tutor": "Advanced voice analytics are ready! See your detailed progress with AI Tutor.",
+        "leaderboard": "Mid-month push! Can you break into the top tier? Practice to find out!",
+        "social": "Connect with top learners! See their strategies & boost your own practice."
+      },
+      "D20": {
+        "default": "You're making amazing progress! Keep refining your speech with daily practice.",
+        "gamification": "Your consistent streak is impressive! Keep earning those premium bonuses.",
+        "ai_tutor": "New AI Tutor scenarios released! Practice real-world conversations today.",
+        "leaderboard": "Final sprint! The monthly leaderboard is heating up. Practice to win!",
+        "social": "Share your progress! Inspire others & see who's leading the charge. Practice!"
+      },
+      "D25": {
+        "default": "Almost a full month of premium! Your speaking skills are truly evolving.",
+        "gamification": "Your streak is a superpower! Keep it active for end-of-month rewards.",
+        "ai_tutor": "One last push! Maximize your AI Tutor sessions before the month ends.",
+        "leaderboard": "Last chance to climb! The monthly leaderboard closes soon. Practice hard!",
+        "social": "Final push! See who's making a last-minute climb. Practice & connect!"
+      },
+      "D30": {
+        "default": "Congratulations on a month of premium! Your speaking confidence is soaring.",
+        "gamification": "Monthly streak bonus! Claim your rewards & start a new month strong.",
+        "ai_tutor": "Celebrate your progress! Your AI Tutor is ready for your next challenge.",
+        "leaderboard": "Monthly leaderboard results are in! See your final rank & celebrate!",
+        "social": "New month, new goals! Connect with friends & set your next speaking challenge."
+      }
+    },
+    "churned": {
+      "D30": {
+        "default": "We miss you! Your speaking journey doesn't have to end. Rejoin SpeakX Premium!",
+        "gamification": "Don't let your premium streak bonuses be forgotten! Rejoin to continue.",
+        "ai_tutor": "Your unlimited AI Tutor sessions await! Re-activate premium for more practice.",
+        "leaderboard": "Your premium leaderboard rank is waiting! Rejoin to compete again.",
+        "social": "Your friends miss you! Reconnect with the SpeakX community & premium features."
+      },
+      "D45": {
+        "default": "Still thinking about improving your English? SpeakX Premium is here for you. Special offer!",
+        "gamification": "Reclaim your speaking habit! We'll help you restart your streak with a premium bonus.",
+        "ai_tutor": "New AI Tutor features! Come back to experience enhanced premium speaking practice.",
+        "leaderboard": "A fresh start! Rejoin premium to climb the global leaderboard.",
+        "social": "New challenges await! Reconnect with the premium community & get inspired."
+      },
+      "D60": {
+        "default": "Two months without SpeakX Premium. Your speaking goals are still achievable! Rejoin now.",
+        "gamification": "It's never too late to rebuild your premium streak! We'll give you a head start.",
+        "ai_tutor": "Your personalized AI Tutor is waiting to help you regain fluency with premium.",
+        "leaderboard": "The premium competition is fierce! Rejoin to show them what you've got.",
+        "social": "Reconnect with your speaking journey! The premium community is here to support you."
+      },
+      "D90": {
+        "default": "Three months. Ready to finally conquer speech anxiety? SpeakX Premium can help. Special offer!",
+        "gamification": "Special offer to restart your premium streak! Don't miss out on building habits.",
+        "ai_tutor": "Your AI Tutor has evolved! Experience our best premium speaking practice yet.",
+        "leaderboard": "A new season! Rejoin SpeakX Premium & dominate the leaderboards.",
+        "social": "Your speaking journey awaits! Reconnect with SpeakX Premium & our community."
+      }
+    },
+    "inactive": {
+      "D30": {
+        "default": "We haven't seen you in a while! Your speaking goals are still within reach.",
+        "gamification": "Don't let your streak disappear! Come back to keep your habit strong.",
+        "ai_tutor": "Your AI Tutor is ready for you! Pick up where you left off with personalized practice.",
+        "leaderboard": "Your spot on the leaderboard is waiting! Rejoin to compete again.",
+        "social": "Your friends miss you! Reconnect with the SpeakX community & practice."
+      },
+      "D45": {
+        "default": "A little practice goes a long way! Your next lesson is ready when you are.",
+        "gamification": "Reclaim your speaking habit! We'll help you restart your streak.",
+        "ai_tutor": "New AI Tutor topics! Come back to experience enhanced speaking practice.",
+        "leaderboard": "A fresh start! Check the leaderboard & get inspired to practice.",
+        "social": "New challenges await! Reconnect with the community & get inspired."
+      },
+      "D60": {
+        "default": "Two months. Ready to boost your confidence? SpeakX is here to help.",
+        "gamification": "It's never too late to rebuild your streak! We'll give you a head start.",
+        "ai_tutor": "Your personalized AI Tutor is waiting to help you regain fluency.",
+        "leaderboard": "The competition is fierce! Rejoin to show them what you've got.",
+        "social": "Reconnect with your speaking journey! The community is here to support you."
+      },
+      "D90": {
+        "default": "Three months. Ready to finally conquer speech anxiety? SpeakX can help.",
+        "gamification": "Special offer to restart your streak! Don't miss out on building habits.",
+        "ai_tutor": "Your AI Tutor has evolved! Experience our best speaking practice yet.",
+        "leaderboard": "A new season! Rejoin SpeakX & dominate the leaderboards.",
+        "social": "Your speaking journey awaits! Reconnect with SpeakX & our community."
+      }
+    }
+  },
+  "goal_templates": {
+    "trial": {
+      "default": {
+        "primary_goal": "Complete your first AI tutor session and build a 3-day streak.",
+        "sub_goal": "First-time user experience, habit formation",
+        "messaging_focus": "Onboarding, core value, consistency"
+      },
+      "gamification": {
+        "primary_goal": "Achieve a 7-day streak and earn 100 coins.",
+        "sub_goal": "Habit formation, reward system engagement",
+        "messaging_focus": "Streaks, coins, daily engagement"
+      },
+      "ai_tutor": {
+        "primary_goal": "Complete 3 AI Tutor sessions and review voice analytics.",
+        "sub_goal": "Core feature adoption, perceived improvement",
+        "messaging_focus": "Speaking practice, feedback, confidence"
+      },
+      "leaderboard": {
+        "primary_goal": "View the leaderboard and complete 5 exercises to earn points.",
+        "sub_goal": "Social engagement, competitive motivation",
+        "messaging_focus": "Competition, ranking, points"
+      },
+      "social": {
+        "primary_goal": "View the leaderboard and invite a friend to join SpeakX.",
+        "sub_goal": "Community engagement, viral growth",
+        "messaging_focus": "Connection, sharing, friendly competition"
+      }
+    },
+    "paid": {
+      "default": {
+        "primary_goal": "Maintain a consistent learning habit and explore advanced premium features.",
+        "sub_goal": "Retention, feature exploration",
+        "messaging_focus": "Value reinforcement, continuous improvement"
+      },
+      "at_risk": {
+        "primary_goal": "Complete an AI Tutor session and check your progress with voice analytics.",
+        "sub_goal": "Re-engagement, value demonstration",
+        "messaging_focus": "Personalized support, progress, benefits"
+      },
+      "gamification": {
+        "primary_goal": "Maintain a 30-day streak and achieve a top 10 leaderboard rank.",
+        "sub_goal": "Sustained habit, competitive achievement",
+        "messaging_focus": "Long-term streaks, high scores, rewards"
+      },
+      "ai_tutor": {
+        "primary_goal": "Complete 10 AI Tutor sessions with new topics and review advanced analytics.",
+        "sub_goal": "Deep feature engagement, skill mastery",
+        "messaging_focus": "Advanced practice, fluency, detailed feedback"
+      },
+      "leaderboard": {
+        "primary_goal": "Achieve a top 5 rank on the global leaderboard and complete 20 exercises.",
+        "sub_goal": "Competitive excellence, sustained activity",
+        "messaging_focus": "Global ranking, challenge, recognition"
+      },
+      "social": {
+        "primary_goal": "Engage with the leaderboard and share your progress on social media.",
+        "sub_goal": "Community participation, advocacy",
+        "messaging_focus": "Sharing success, inspiration, connection"
+      }
+    },
+    "churned": {
+      "default": {
+        "primary_goal": "Re-activate premium subscription and complete one AI Tutor session.",
+        "sub_goal": "Re-activation, re-demonstrate value",
+        "messaging_focus": "Lost benefits, special offers, core value"
+      },
+      "gamification": {
+        "primary_goal": "Re-activate premium to reclaim your streak and access premium rewards.",
+        "sub_goal": "Loss aversion, re-engagement with habit",
+        "messaging_focus": "Lost streaks, premium bonuses, fresh start"
+      },
+      "ai_tutor": {
+        "primary_goal": "Re-activate premium to experience new AI Tutor features and personalized feedback.",
+        "sub_goal": "Re-engagement with core feature, skill improvement",
+        "messaging_focus": "Enhanced AI, speaking practice, confidence"
+      },
+      "leaderboard": {
+        "primary_goal": "Re-activate premium to rejoin the global leaderboard and compete for top ranks.",
+        "sub_goal": "Re-engagement with competition, social status",
+        "messaging_focus": "Competitive spirit, ranking, community"
+      },
+      "social": {
+        "primary_goal": "Re-activate premium to reconnect with the SpeakX community and share your progress.",
+        "sub_goal": "Re-engagement with community, belonging",
+        "messaging_focus": "Community, shared goals, support"
+      }
+    },
+    "inactive": {
+      "default": {
+        "primary_goal": "Log in and complete one lesson or AI Tutor session.",
+        "sub_goal": "Re-engagement, habit restart",
+        "messaging_focus": "Gentle nudge, ease of return, value reminder"
+      },
+      "gamification": {
+        "primary_goal": "Log in and restart your streak by completing an exercise.",
+        "sub_goal": "Re-engagement with habit, gamified motivation",
+        "messaging_focus": "Streaks, small wins, rewards"
+      },
+      "ai_tutor": {
+        "primary_goal": "Log in and try a quick AI Tutor session to refresh your speaking skills.",
+        "sub_goal": "Re-engagement with core feature, skill maintenance",
+        "messaging_focus": "Speaking practice, confidence, ease of use"
+      },
+      "leaderboard": {
+        "primary_goal": "Log in, view the leaderboard, and complete an exercise to earn points.",
+        "sub_goal": "Re-engagement with competition, motivation",
+        "messaging_focus": "Competition, progress, challenge"
+      },
+      "social": {
+        "primary_goal": "Log in, check community updates, and complete a lesson.",
+        "sub_goal": "Re-engagement with community, shared purpose",
+        "messaging_focus": "Connection, inspiration, shared learning"
+      }
+    }
+  }
+}

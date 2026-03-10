@@ -1,0 +1,15 @@
+Company Overview: SpeakX is an AI-powered English learning platform designed to help users build speaking confidence through real-time feedback and habit-forming exercises. The platform targets non-native speakers who often feel "speech anxiety" despite knowing the grammar rules.
+
+Core Product Features:
+
+AI Tutor: 1-on-1 voice-based conversation practice with real-time corrections.
+
+Daily Streaks: A gamified tracker that rewards users for practicing every day to build a long-term habit.
+
+Leaderboards: A social competition space where users earn points based on lesson completion and accuracy.
+
+Personalized Curriculum: Lessons that adapt based on the user's initial proficiency level and progress.
+
+Voice Analytics: Visual feedback on pronunciation, fluency, and vocabulary usage.
+
+Business Objectives: The primary goal is to move users from "Passive Learners" to "Active Speakers". Success is defined by the user’s ability to maintain a consistent learning habit and eventually convert from the free tier to a premium subscription based on the value perceived from speaking improvements.
