@@ -3,6 +3,8 @@ from timing_optimizer import generate_segment_timing_top3
 import os
 import io
 import re
+from dotenv import load_dotenv
+load_dotenv()
 import csv
 import json
 import sys
@@ -21,12 +23,9 @@ ITER1_DIR = "iteration_1_after_learning"
 os.makedirs(ITER0_DIR, exist_ok=True)
 os.makedirs(ITER1_DIR, exist_ok=True)
 
-from dotenv import load_dotenv
-load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-os.environ["GEMINI_API_KEY"] = GEMINI_API_KEY
 GEMINI_REST_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={GEMINI_API_KEY}"
-MODEL_GEMINI = "gemini-2.5-flash"
+MODEL_GEMINI = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
 
 LIFECYCLE_ORDER = ["trial", "paid", "churned", "inactive"]
 

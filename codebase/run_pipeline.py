@@ -15,15 +15,16 @@ import subprocess
 import argparse
 import time
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-CODEBASE_DIR = os.path.join(SCRIPT_DIR, "codebase")
-if CODEBASE_DIR not in sys.path:
-    sys.path.insert(0, CODEBASE_DIR)
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))   # codebase/
+PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)                 # project root
+
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
-ITER0_DIR = "iteration_0_before_learning"
-ITER1_DIR = "iteration_1_after_learning"
+ITER0_DIR = os.path.join(PROJECT_ROOT, "iteration_0_before_learning")
+ITER1_DIR = os.path.join(PROJECT_ROOT, "iteration_1_after_learning")
 
 
 def ensure_dirs():
@@ -52,12 +53,21 @@ def run_full_pipeline(data_path=None, kb_path=None):
 
     # ── STEP 1: Task 1 ──────────────────────────────────────────────────────
     step_banner(1, "Task 1 — System Architecture & Intelligence Design")
-    t1_path = os.path.join(CODEBASE_DIR, "task1_aurora.py")
-    result = subprocess.run([sys.executable, t1_path], cwd=os.getcwd())
+    t1_path = os.path.join(SCRIPT_DIR, "task1_aurora.py")
+    result = subprocess.run([sys.executable, t1_path], cwd=PROJECT_ROOT)
     if result.returncode != 0:
         print(f"   Task 1 failed with code {result.returncode}")
         return
     print("\n✅ Task 1 complete.")
+
+    # Detect actual data path for later steps (timing optimizer)
+    if data_path is None:
+        candidates = [f for f in os.listdir(PROJECT_ROOT)
+                      if f.endswith('.csv') and 'user' in f.lower()
+                      and 'segment' not in f.lower() and 'goal' not in f.lower()
+                      and 'schedule' not in f.lower()]
+        if candidates:
+            data_path = candidates[0]
 
     # ── STEP 2: Theme Engine ─────────────────────────────────────────────────
     step_banner(2, "Theme Engine — Octalysis Drive Assignment")
@@ -67,8 +77,8 @@ def run_full_pipeline(data_path=None, kb_path=None):
 
     # ── STEP 3: Template Generator ───────────────────────────────────────────
     step_banner(3, "Template Generator — Bilingual Notification Templates")
-    t2_path = os.path.join(CODEBASE_DIR, "generate_templates.py")
-    result = subprocess.run([sys.executable, t2_path], cwd=os.getcwd())
+    t2_path = os.path.join(SCRIPT_DIR, "generate_templates.py")
+    result = subprocess.run([sys.executable, t2_path], cwd=PROJECT_ROOT)
     if result.returncode != 0:
         print(f"   Template Generator failed with code {result.returncode}")
     print("\n✅ Template Generator complete.")
@@ -81,8 +91,8 @@ def run_full_pipeline(data_path=None, kb_path=None):
 
     # ── STEP 5: Schedule Generator (Iteration 0) ─────────────────────────────
     step_banner(5, "Schedule Generator — User Notification Schedules (Iter 0)")
-    sched_path = os.path.join(CODEBASE_DIR, "schedule_generator.py")
-    result = subprocess.run([sys.executable, sched_path], cwd=os.getcwd())
+    sched_path = os.path.join(SCRIPT_DIR, "schedule_generator.py")
+    result = subprocess.run([sys.executable, sched_path], cwd=PROJECT_ROOT)
     if result.returncode != 0:
         print(f"   Schedule Generator failed with code {result.returncode}")
     print("\n✅ Schedule Generator (Iter 0) complete.")
@@ -93,12 +103,13 @@ def run_full_pipeline(data_path=None, kb_path=None):
     # ── STEP 6: Task 3 — RL + iter1 templates + iter1 schedule + delta ──────
     step_banner(6, "Task 3 — RL Learning + Iter1 Generation + Delta Report")
 
-    if not os.path.exists("experiment_results.csv"):
+    exp_results = os.path.join(PROJECT_ROOT, "experiment_results.csv")
+    if not os.path.exists(exp_results):
         print("   ⚠️  No experiment_results.csv found.")
         print("   The script will prompt you for the path.")
 
-    t3_path = os.path.join(CODEBASE_DIR, "task3_learning_engine.py")
-    result = subprocess.run([sys.executable, t3_path], cwd=os.getcwd())
+    t3_path = os.path.join(SCRIPT_DIR, "task3_learning_engine.py")
+    result = subprocess.run([sys.executable, t3_path], cwd=PROJECT_ROOT)
     if result.returncode != 0:
         print(f"   Task 3 failed with code {result.returncode}")
     else:
@@ -119,8 +130,9 @@ def run_full_pipeline(data_path=None, kb_path=None):
                 size = os.path.getsize(os.path.join(d, f))
                 print(f"    {f:<45} {size:>10,} bytes")
     for f in ["experiment_results.csv", "learning_delta_report.csv", "README.txt"]:
-        if os.path.exists(f):
-            print(f"  {f:<47} {os.path.getsize(f):>10,} bytes")
+        fpath = os.path.join(PROJECT_ROOT, f)
+        if os.path.exists(fpath):
+            print(f"  {f:<47} {os.path.getsize(fpath):>10,} bytes")
 
 
 if __name__ == "__main__":

@@ -170,7 +170,9 @@ def generate_segment_timing_top3(rl_comprehensive_df, output_path=None):
         output_path = os.path.join(ITER1_DIR, "timing_recommendations.csv")
 
     df = rl_comprehensive_df.copy()
-    df["time_zone"] = df["notification_window"].map(WINDOW_TO_ZONE)
+    # Strip time-range suffix like "early_morning (06:00 - 08:59)" → "early_morning"
+    df["_window_clean"] = df["notification_window"].astype(str).str.replace(r"\s*\(.*\)", "", regex=True).str.strip()
+    df["time_zone"] = df["_window_clean"].map(WINDOW_TO_ZONE)
     df = df.dropna(subset=["time_zone"])
     df["time_zone"] = df["time_zone"].astype(int)
 

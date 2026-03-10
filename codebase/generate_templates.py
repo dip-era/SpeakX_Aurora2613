@@ -43,13 +43,11 @@ def dbg(label: str, value=None):
         print(f"[DEBUG] {label}:\n{sep}\n{value}\n{sep}", flush=True)
 
 
-# ── API key: mirrors task 1 — reads from os.environ (set by task 1 at runtime)
-# If running task 2 standalone, set GEMINI_API_KEY as an environment variable
-# or replace the empty string below with your key directly (same as task 1).
 from dotenv import load_dotenv
 load_dotenv()
-API_KEY = os.getenv(
-    "GEMINI_API_KEY")
+
+# ── API key: loaded from .env file ───────────────────────────────────────────
+API_KEY = os.getenv("GEMINI_API_KEY")
 
 dbg("GEMINI_API_KEY", f"{'*' * (len(API_KEY) - 4)}{API_KEY[-4:]}")
 

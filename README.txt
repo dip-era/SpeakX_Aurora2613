@@ -1,7 +1,7 @@
 Project Aurora — Self-Learning Notification Orchestrator
 ========================================================
 Team: Hostel 2613 | Kriti 2026 | SpeakX Challenge
-
+Video link : https://drive.google.com/file/d/1c_yMBaIjrgGrG-4bzWlv0tDpM2K6HmWy/view?usp=drivesdk
 ARCHITECTURE OVERVIEW
 ---------------------
 Aurora is a 3-task, 7-stage pipeline that builds a domain-agnostic,

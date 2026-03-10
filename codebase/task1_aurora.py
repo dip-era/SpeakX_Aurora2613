@@ -29,6 +29,8 @@ import os, json, re, time, warnings
 import numpy as np
 import pandas as pd
 import joblib
+from dotenv import load_dotenv
+load_dotenv()
 from scipy.stats import rankdata
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
@@ -354,14 +356,10 @@ def run_kb_engine(kb_path='company_kb.md', api_key=None):
     try:
         from google import genai
         from google.genai import types as genai_types
-        
-        from dotenv import load_dotenv
-        load_dotenv()
-        
         if not api_key:
             api_key = os.getenv('GEMINI_API_KEY')
         client = genai.Client(api_key=api_key)
-        MODEL_ID = 'gemini-2.5-flash'
+        MODEL_ID = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
     except ImportError:
         raise ImportError('google-genai not installed. Run: pip install google-genai')
 
@@ -1716,30 +1714,25 @@ def run_task1(data_path=None, kb_path=None, api_key=None):
     return df, out_df, goals_df, kb_data
 
 if __name__ == '__main__':
-    df, out_df, goals_df, _ = run_task1()
+    kb_input = input("Enter path to Company KB file (or press Enter to auto-detect): ").strip()
+    data_input = input("Enter path to User Behavioral Data CSV (or press Enter to auto-detect): ").strip()
 
+    kb_path = kb_input if kb_input else None
+    data_path = data_input if data_input else None
 
-# ── Override paths here if needed ────────────────────────────────────────────
-# DATA_PATH = 'user_behavioral_data.csv'   # auto-detected if None
-# KB_PATH   = 'company_kb.md'              # auto-detected if None
-
-# Place your files in the same directory as this notebook:
-#   user_behavioral_data.csv  (1500 users, 15 cols — schema validated at runtime)
-#   company_kb.md             (SpeakX knowledge bank)
-
-df, out_df, goals_df, _ = run_task1(
-    data_path = locals().get('DATA_PATH', None),
-    kb_path   = locals().get('KB_PATH',   None),
-    api_key   = os.getenv('GEMINI_API_KEY'),
-)
-print(
-    "\n✅ All 5 Task 1 deliverables successfully created:\n"
-    "   📄 company_north_star.json\n"
-    "   📄 feature_goal_map.json\n"
-    "   📄 allowed_tone_hook_matrix.json\n"
-    "   📊 user_segments.csv\n"
-    "   📊 segment_goals.csv"
-)
+    df, out_df, goals_df, _ = run_task1(
+        data_path=data_path,
+        kb_path=kb_path,
+        api_key=os.getenv('GEMINI_API_KEY'),
+    )
+    print(
+        "\n✅ All 5 Task 1 deliverables successfully created:\n"
+        "   📄 company_north_star.json\n"
+        "   📄 feature_goal_map.json\n"
+        "   📄 allowed_tone_hook_matrix.json\n"
+        "   📊 user_segments.csv\n"
+        "   📊 segment_goals.csv"
+    )
 
 
 # ============================================================

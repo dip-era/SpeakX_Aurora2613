@@ -4,13 +4,13 @@ import pandas as pd
 import json
 import anthropic
 import random
-
-
 from dotenv import load_dotenv
 load_dotenv()
+
+
 API_KEY = os.getenv("ANTHROPIC_API_KEY")
 client = anthropic.Anthropic(api_key=API_KEY)
-MODEL_NAME = "claude-sonnet-4-6"
+MODEL_NAME = os.getenv("ANTHROPIC_MODEL", "claude-sonnet-4-6")
 
 
 def _find_behavioral_csv():
